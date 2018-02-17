@@ -1,0 +1,20 @@
+---
+- name: Create Ovirt VMs
+  hosts: localhost
+  gather_facts: false
+  tasks:
+  - name: Create VM with cloud init
+    ovirt_vms:
+        name: "{{ vm_name_prefix}}-{{ item }}"
+        template: "{{ template }}"
+        cluster: Default
+        memory: "{{ memory }}"
+        high_availability: false
+        cloud_init:
+          nic_boot_protocol: dhcp
+          nic_name: eth0
+          nic_on_boot: true
+          host_name: "{{ vm_name_prefix}}-{{ item }}.rhlab.online"
+          user_name: cloud-user
+          root_password: "{{ password }}"
+    with_sequence: count={{ number_of_vms }}
