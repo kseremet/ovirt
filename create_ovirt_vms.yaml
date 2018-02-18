@@ -23,3 +23,9 @@
       user_name: "{{ ci_user_name }}"
       root_password: "{{ password }}"
   with_sequence: count={{ number_of_vms }}
+- ovirt_tags:
+    name: "{{ vm_tag }}"
+    state: attached
+    vms:
+      - "{{ vm_name_prefix}}-{{ item }}"
+  with_sequence: count={{ number_of_vms }}

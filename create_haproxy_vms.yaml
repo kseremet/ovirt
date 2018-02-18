@@ -6,5 +6,6 @@
     vm_name_prefix: "{{ lb_name }}"
     memory: "{{ lb_memory }}"
     number_of_vms: "{{ lb_count }}"
+    vm_tag: "{{ lb_vm_tag }}"
   tasks:
   - import_tasks: create_ovirt_vms.yaml
