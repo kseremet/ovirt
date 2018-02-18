@@ -1,5 +1,6 @@
 ---
 - name: Register RHEL system to Satellite6
+  hosts: all
   gather_facts: false
   tasks:
   - name: Download latest katello-ca-consumer rpm
