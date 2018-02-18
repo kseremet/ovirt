@@ -1,0 +1,11 @@
+---
+- name: Create HAProxy VM
+  hosts: localhost
+  gather_facts: false
+  vars:
+    vm_name_prefix: "{{ lb_name }}"
+    memory: "{{ lb_memory }}"
+  tasks:
+  - name: Create HAProxy VM
+    debug: msg="Creating an HAProxy VM"
+- import_playbook: create_ovirt_vms.yaml

@@ -1,0 +1,11 @@
+---
+- name: Create Nagios VM
+  hosts: localhost
+  gather_facts: false
+  vars:
+    vm_name_prefix: "{{ nagios_name }}"
+    memory: "{{ nagios_memory }}"
+  tasks:
+  - name: Create Nagios VM
+    debug: msg="Creating a Nagios VM"
+- import_playbook: create_ovirt_vms.yaml

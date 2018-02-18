@@ -1,0 +1,11 @@
+---
+- name: Create Apache VMs
+  hosts: localhost
+  gather_facts: false
+  vars:
+    vm_name_prefix: "{{ webserver_name }}"
+    memory: "{{ webserver_memory }}"
+  tasks:
+  - name: Create Apache VM
+    debug: msg="Creating an Apache VM"
+- import_playbook: create_ovirt_vms.yaml
