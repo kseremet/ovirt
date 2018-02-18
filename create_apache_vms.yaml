@@ -5,6 +5,7 @@
   vars:
     vm_name_prefix: "{{ webserver_name }}"
     memory: "{{ webserver_memory }}"
+    number_of_vms: "{{ webserver_count }}"
   tasks:
   - name: Create Apache VM
     debug: msg="Creating an Apache VM"

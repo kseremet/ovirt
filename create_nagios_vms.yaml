@@ -5,6 +5,7 @@
   vars:
     vm_name_prefix: "{{ nagios_name }}"
     memory: "{{ nagios_memory }}"
+    number_of_vms: "{{ nagios_count }}"
   tasks:
   - name: Create Nagios VM
     debug: msg="Creating a Nagios VM"
