@@ -2,6 +2,11 @@
 - name: Create Ovirt VMs
   hosts: localhost
   gather_facts: false
+  vars:
+    cluster: Default
+    ci_nic_boot_protocol: dhcp
+    ci_nic_name: eth0
+    ci_user_name: cloud-user
   tasks:
   - name: Obtain SSO token with using username/password credentials
     no_log: false
@@ -15,14 +20,15 @@
       auth: "{{ ovirt_auth }}"
       name: "{{ vm_name_prefix}}-{{ item }}"
       template: "{{ template }}"
-      cluster: Default
+      cluster: "{{ cluster }}"
       memory: "{{ memory }}"
       high_availability: false
+      wait: true
       cloud_init:
-        nic_boot_protocol: dhcp
-        nic_name: eth0
+        nic_boot_protocol: "{{ ci_nic_boot_protocol }}"
+        nic_name: "{{ ci_nic_name }}"
         nic_on_boot: true
         host_name: "{{ vm_name_prefix}}-{{ item }}.rhlab.online"
-        user_name: cloud-user
+        user_name: "{{ ci_user_name }}"
         root_password: "{{ password }}"
     with_sequence: count={{ number_of_vms }}
