@@ -8,6 +8,7 @@
       url: "https://{{ satellite_fqdn }}/pub/katello-ca-consumer-latest.noarch.rpm"
       dest: /root/katello-ca-consumer-latest.noarch.rpm
       mode: 0444
+      validate_certs: false
   - name: Install katello-ca-consumer rpm
     command: rpm --quiet -i /root/katello-ca-consumer-latest.noarch.rpm
     creates: /usr/bin/katello-rhsm-consumer
