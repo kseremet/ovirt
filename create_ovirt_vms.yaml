@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
   - name: Obtain SSO token with using username/password credentials
-    no_log: true
+    no_log: false
     ovirt_auth:
       url: "{{ lookup('env','OVIRT_URL') }}"
       username: "{{ lookup('env','OVIRT_USERNAME') }}"
