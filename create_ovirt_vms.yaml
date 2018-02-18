@@ -9,6 +9,7 @@
       url: "{{ lookup('env','OVIRT_URL') }}"
       username: "{{ lookup('env','OVIRT_USERNAME') }}"
       password: "{{ lookup('env','OVIRT_PASSWORD') }}"
+      insecure: true
   - name: Create VM with cloud init
     ovirt_vms:
       auth: "{{ ovirt_auth }}"
