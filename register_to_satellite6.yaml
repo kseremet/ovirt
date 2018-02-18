@@ -5,7 +5,7 @@
   tasks:
   - name: Ensure hostname is set up correctly
     hostname:
-      name: "{{ ansible_hostname }}"
+      name: "{{ inventory_hostname }}"
   - name: Download latest katello-ca-consumer rpm
     get_url:
       url: "https://{{ satellite_fqdn }}/pub/katello-ca-consumer-latest.noarch.rpm"
