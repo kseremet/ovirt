@@ -7,6 +7,4 @@
     memory: "{{ lb_memory }}"
     number_of_vms: "{{ lb_count }}"
   tasks:
-  - name: Create HAProxy VM
-    debug: msg="Creating an HAProxy VM"
-- import_playbook: create_ovirt_vms.yaml
+  - import_tasks: create_ovirt_vms.yaml

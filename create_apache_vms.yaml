@@ -7,6 +7,4 @@
     memory: "{{ webserver_memory }}"
     number_of_vms: "{{ webserver_count }}"
   tasks:
-  - name: Create Apache VM
-    debug: msg="Creating an Apache VM"
-- import_playbook: create_ovirt_vms.yaml
+  - import_tasks: create_ovirt_vms.yaml

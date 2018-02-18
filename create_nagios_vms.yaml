@@ -7,6 +7,4 @@
     memory: "{{ nagios_memory }}"
     number_of_vms: "{{ nagios_count }}"
   tasks:
-  - name: Create Nagios VM
-    debug: msg="Creating a Nagios VM"
-- import_playbook: create_ovirt_vms.yaml
+  - import_tasks: create_ovirt_vms.yaml
