@@ -1,0 +1,13 @@
+---
+- name: Create Jboss VMs
+  hosts: localhost
+  gather_facts: false
+  vars:
+    vm_name_prefix: "{{ jboss_vm_name }}"
+    memory: "{{ jboss_vm_memory }}"
+    number_of_vms: "{{ jboss_vm_count }}"
+    vm_tag: "{{ jboss_vm_tag }}"
+    vm_dns_domain: "{{ jboss_vm_dns_domain }}"
+    is_stateless: True
+  tasks:
+  - import_tasks: create_ovirt_vms.yaml

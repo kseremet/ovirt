@@ -1,0 +1,13 @@
+---
+- name: Create Wordpress VMs
+  hosts: localhost
+  gather_facts: false
+  vars:
+    vm_name_prefix: "{{ wordpress_vm_name }}"
+    memory: "{{ wordpress_vm_memory }}"
+    number_of_vms: "{{ wordpress_vm_count }}"
+    vm_tag: "{{ wordpress_vm_tag }}"
+    vm_dns_domain: "{{ wordpress_vm_dns_domain }}"
+    is_stateless: True
+  tasks:
+  - import_tasks: create_ovirt_vms.yaml

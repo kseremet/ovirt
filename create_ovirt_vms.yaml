@@ -14,6 +14,7 @@
     cluster: "{{ cluster }}"
     memory: "{{ memory }}"
     high_availability: false
+    stateless: "{{ is_stateless }}"
     wait: true
     cloud_init:
       nic_boot_protocol: "{{ ci_nic_boot_protocol }}"
