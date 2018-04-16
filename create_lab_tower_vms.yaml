@@ -1,0 +1,12 @@
+---
+- name: Create Tower VMs
+  hosts: localhost
+  gather_facts: false
+  vars:
+    vm_name_prefix: "{{ tower_vm_name }}"
+    memory: "{{ tower_vm_memory }}"
+    number_of_vms: "{{ tower_vm_count }}"
+    vm_tag: "{{ tower_vm_tag }}"
+    vm_dns_domain: "{{ tower_vm_dns_domain }}"
+  tasks:
+  - import_tasks: create_ovirt_vms.yaml
