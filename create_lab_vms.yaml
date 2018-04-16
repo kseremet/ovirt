@@ -1,0 +1,12 @@
+---
+- name: Create Lab VMs
+  hosts: localhost
+  gather_facts: false
+  vars:
+    vm_name_prefix: "{{ vm_name }}"
+    memory: "{{ vm_memory }}"
+    number_of_vms: "{{ vm_count }}"
+    vm_tag: "{{ vm_tag }}"
+    vm_dns_domain: "{{ vm_dns_domain }}"
+  tasks:
+  - import_tasks: create_ovirt_vms.yaml
