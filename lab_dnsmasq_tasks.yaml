@@ -10,4 +10,4 @@
     path: /etc/ethers
     create: yes
     regexp: "{{ hostvars[item]['ansible_host'] }}$"
-    line: "^{{ mac_address }} {{ hostvars[item]['ansible_host'] }}$"
+    line: "{{ mac_address }} {{ hostvars[item]['ansible_host'] }}"
