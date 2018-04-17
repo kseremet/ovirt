@@ -1,0 +1,11 @@
+---
+- name: Update Nginx
+  hosts: all
+  gather_facts: false
+  serial: 1
+  tasks:
+  - name: Create Nginx configuration files for Tower instances
+    template:
+      src: templates/tower.conf.j2
+      dest: /etc/nginx/conf.d/{{item}}.conf
+    with_items: "{{ groups['tag_lab_tower'] }}"
