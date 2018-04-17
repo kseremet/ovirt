@@ -15,4 +15,4 @@
   lineinfile:
     path: /etc/hosts
     regexp: "{{ item }}$"
-    line: "{{ hostvars[item]['ansible_host'] }} item"
+    line: "{{ hostvars[item]['ansible_host'] }} {{ item }}"
