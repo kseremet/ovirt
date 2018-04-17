@@ -8,6 +8,7 @@
     number_of_vms: "{{ tower_vm_count }}"
     vm_tag: "{{ tower_vm_tag }}"
     vm_dns_domain: "{{ tower_vm_dns_domain }}"
+    is_stateless: False
     template: "{{ tower_vm_template }}"
   tasks:
   - import_tasks: create_ovirt_vms.yaml
