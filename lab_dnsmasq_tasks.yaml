@@ -1,0 +1,11 @@
+- ovirt_nics_facts:
+    auth: "{{ ovirt_auth }}"
+    vm: "{{ vm_name }}"
+    name: eth0
+- debug:
+    var: ovirt_nics
+#- name: Update /etc/ethers
+#  lineinfile:
+#    path: /etc/ethers
+#    regexp: "{{ hostvars[item]['ansible_host'] }}$"
+#    line: "{{ hostvars[item]['ansible_host'] }}"
