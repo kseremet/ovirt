@@ -11,5 +11,6 @@
       username: "{{ lookup('env','OVIRT_USERNAME') }}"
       password: "{{ lookup('env','OVIRT_PASSWORD') }}"
       insecure: true
+    delegate_to: localhost
   - include: lab_dnsmasq_tasks.yaml vm_name="{{ hostvars[item]['name'] }}" 
     with_items: "{{ groups['tag_lab_webserver'] }}"
