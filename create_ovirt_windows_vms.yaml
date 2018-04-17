@@ -1,0 +1,25 @@
+---
+- name: Obtain SSO token with using username/password credentials
+  no_log: false
+  ovirt_auth:
+    url: "{{ lookup('env','OVIRT_URL') }}"
+    username: "{{ lookup('env','OVIRT_USERNAME') }}"
+    password: "{{ lookup('env','OVIRT_PASSWORD') }}"
+    insecure: true
+- name: Create a Windows VM w/o sysprep
+  ovirt_vms:
+    auth: "{{ ovirt_auth }}"
+    name: "{{ vm_name_prefix}}{{ item }}"
+    template: "{{ template }}"
+    cluster: "{{ cluster }}"
+    memory: "{{ memory }}"
+    high_availability: false
+    stateless: "{{ is_stateless }}"
+    wait: true
+  with_sequence: count={{ number_of_vms }}
+- ovirt_tags:
+    name: "{{ vm_tag }}"
+    state: attached
+    vms:
+      - "{{ vm_name_prefix}}{{ item }}"
+  with_sequence: count={{ number_of_vms }}

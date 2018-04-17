@@ -1,0 +1,14 @@
+---
+- name: Create Windows VMs
+  hosts: localhost
+  gather_facts: false
+  vars:
+    vm_name_prefix: "{{ windows_vm_name }}"
+    memory: "{{ windows_vm_memory }}"
+    number_of_vms: "{{ windows_vm_count }}"
+    vm_tag: "{{ windows_vm_tag }}"
+    vm_dns_domain: "{{ windows_vm_dns_domain }}"
+    template: "{{ windows_vm_template }}"
+    is_stateless: True
+  tasks:
+  - import_tasks: create_ovirt_windows_vms.yaml
