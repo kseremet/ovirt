@@ -1,7 +1,6 @@
 - ovirt_nics_facts:
     auth: "{{ ovirt_auth }}"
     vm: "{{ vm_name }}"
-    name: eth0
   delegate_to: localhost
   become: false
 - debug:
