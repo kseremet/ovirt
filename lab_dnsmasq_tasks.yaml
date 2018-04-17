@@ -3,11 +3,10 @@
       auth: "{{ ovirt_auth }}"
       vm: "{{ vm_name }}"
   - set_fact: mac_address="{{ ovirt_nics[0]['mac']['address'] }}"
-  - debug: msg="Mac address {{ mac_address }}" 
   delegate_to: localhost
   become: false
-#- name: Update /etc/ethers
-#  lineinfile:
-#    path: /etc/ethers
-#    regexp: "{{ hostvars[item]['ansible_host'] }}$"
-#    line: "{{ hostvars[item]['ansible_host'] }}"
+- name: Update /etc/ethers
+  lineinfile:
+    path: /etc/ethers
+    regexp: "{{ hostvars[item]['ansible_host'] }}$"
+    line: "^{{ mac_address }} {{ hostvars[item]['ansible_host'] }}$"
