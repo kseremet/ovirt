@@ -9,5 +9,6 @@
     vm_tag: "{{ webserver_vm_tag }}"
     vm_dns_domain: "{{ webserver_vm_dns_domain }}"
     is_stateless: True
+    template: "{{ linux_vm_template }}"
   tasks:
   - import_tasks: create_ovirt_vms.yaml

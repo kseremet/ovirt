@@ -8,6 +8,7 @@
     number_of_vms: "{{ wordpress_vm_count }}"
     vm_tag: "{{ wordpress_vm_tag }}"
     vm_dns_domain: "{{ wordpress_vm_dns_domain }}"
+    template: "{{ linux_vm_template }}"
     is_stateless: True
   tasks:
   - import_tasks: create_ovirt_vms.yaml

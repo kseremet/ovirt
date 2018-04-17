@@ -8,6 +8,7 @@
     number_of_vms: "{{ jboss_vm_count }}"
     vm_tag: "{{ jboss_vm_tag }}"
     vm_dns_domain: "{{ jboss_vm_dns_domain }}"
+    template: "{{ linux_vm_template }}"
     is_stateless: True
   tasks:
   - import_tasks: create_ovirt_vms.yaml
