@@ -9,7 +9,7 @@
 - name: Create VM with cloud init
   ovirt_vms:
     auth: "{{ ovirt_auth }}"
-    name: "{{ vm_name_prefix}}-{{ item }}"
+    name: "{{ vm_name_prefix}}{{ item }}"
     template: "{{ template }}"
     cluster: "{{ cluster }}"
     memory: "{{ memory }}"
