@@ -20,7 +20,7 @@
       nic_boot_protocol: "{{ ci_nic_boot_protocol }}"
       nic_name: "{{ ci_nic_name }}"
       nic_on_boot: true
-      host_name: "{{ vm_name_prefix}}-{{ item }}.{{ vm_dns_domain }}"
+      host_name: "{{ vm_name_prefix}}{{ item }}.{{ vm_dns_domain }}"
       user_name: "{{ ci_user_name }}"
       root_password: "{{ password }}"
   with_sequence: count={{ number_of_vms }}
@@ -28,5 +28,5 @@
     name: "{{ vm_tag }}"
     state: attached
     vms:
-      - "{{ vm_name_prefix}}-{{ item }}"
+      - "{{ vm_name_prefix}}{{ item }}"
   with_sequence: count={{ number_of_vms }}
