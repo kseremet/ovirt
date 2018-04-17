@@ -2,12 +2,12 @@
     auth: "{{ ovirt_auth }}"
     vm: "{{ vm_name }}"
     name: eth0
-    delegate_to: localhost
-    become: false
+  delegate_to: localhost
+  become: false
 - debug:
     var: ovirt_nics
-    delegate_to: localhost
-    become: false
+  delegate_to: localhost
+  become: false
 #- name: Update /etc/ethers
 #  lineinfile:
 #    path: /etc/ethers
