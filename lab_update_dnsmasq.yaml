@@ -14,4 +14,8 @@
     delegate_to: localhost
     become: false
   - include: lab_dnsmasq_tasks.yaml vm_name="{{ hostvars[item]['name'] }}" 
-    with_items: "{{ groups['tag_lab_webserver'] }}"
+    with_items:
+      - "{{ groups['tag_lab_webserver'] }}"
+      - "{{ groups['tag_lab_wordpress'] }}"
+      - "{{ groups['tag_lab_jboss'] }}"
+      - "{{ groups['tag_lab_tower'] }}"
