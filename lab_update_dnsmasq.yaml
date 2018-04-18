@@ -19,3 +19,4 @@
       - "{{ groups['tag_lab_wordpress'] }}"
       - "{{ groups['tag_lab_jboss'] }}"
       - "{{ groups['tag_lab_tower'] }}"
+      - "{{ groups['tag_lab_windows'] }}"
