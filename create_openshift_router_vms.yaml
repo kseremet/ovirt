@@ -1,0 +1,14 @@
+---
+- name: Create OpenShift Router VMs
+  hosts: localhost
+  gather_facts: false
+  vars:
+    vm_name_prefix: "{{ ocp_router_vm_name }}"
+    memory: "{{ ocp_router_vm_memory }}"
+    number_of_vms: "{{ ocp_router_vm_count }}"
+    vm_tag: "{{ ocp_router_vm_tag }}"
+    vm_dns_domain: "{{ ocp_router_vm_dns_domain }}"
+    is_stateless: False
+    template: "{{ linux_vm_template }}"
+  tasks:
+  - import_tasks: create_ovirt_vms.yaml

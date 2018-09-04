@@ -1,0 +1,25 @@
+---
+- name: Obtain SSO token with using username/password credentials
+  no_log: false
+  ovirt_auth:
+    url: "{{ lookup('env','OVIRT_URL') }}"
+    username: "{{ lookup('env','OVIRT_USERNAME') }}"
+    password: "{{ lookup('env','OVIRT_PASSWORD') }}"
+    insecure: true
+
+- name: Create OpenShift Worker VMs
+  hosts: localhost
+  gather_facts: false
+  vars:
+    vm_name_prefix: "{{ ocp_worker_vm_name }}"
+    memory: "{{ ocp_worker_vm_memory }}"
+    number_of_vms: "{{ ocp_worker_vm_count }}"
+    vm_tag: "{{ ocp_worker_vm_tag }}"
+    vm_dns_domain: "{{ ocp_worker_vm_dns_domain }}"
+    is_stateless: False
+    template: "{{ linux_vm_template }}"
+    disks: "{{ ocp_worker_disks }}"
+  tasks:
+  - import_tasks: create_ovirt_vms.yaml
+  - import_tasks: add_disks.yaml
+

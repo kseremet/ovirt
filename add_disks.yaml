@@ -1,0 +1,9 @@
+- ovirt_disk:
+    auth: "{{ ovirt_auth }}"
+    vm_name: "{{ vm_name }}"
+    name: "{{ item.name }}"
+    size: "{{ item.size }}"
+    format: "{{ item.format }}"
+    interface: "{{ item.interface }}"
+    storage_domain: "{{ item.domain }}"
+  with_items: "{{ vm_disks }}"
