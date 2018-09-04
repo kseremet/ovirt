@@ -18,6 +18,6 @@
       url: "{{ lookup('env','OVIRT_URL') }}"
       username: "{{ lookup('env','OVIRT_USERNAME') }}"
       password: "{{ lookup('env','OVIRT_PASSWORD') }}"
-    insecure: true
+      insecure: true
   - import_tasks: create_ovirt_vms.yaml
   - import_tasks: add_disks.yaml
