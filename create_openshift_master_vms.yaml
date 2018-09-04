@@ -20,4 +20,7 @@
       password: "{{ lookup('env','OVIRT_PASSWORD') }}"
       insecure: true
   - import_tasks: create_ovirt_vms.yaml
-  - import_tasks: add_disks.yaml
+  - include_tasks: add_disks.yaml vm_name={{ vm_name_prefix}}{{ idx }}
+    with_sequence: count={{ ocp_master_vm_count }}
+    loop_control:
+      loop_var: idx
