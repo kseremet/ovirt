@@ -10,7 +10,7 @@
     vm_dns_domain: "{{ ocp_master_vm_dns_domain }}"
     is_stateless: False
     template: "{{ linux_vm_template }}"
-    disks: "{{ ocp_master_disks }}"
+    vm_disks: "{{ ocp_master_disks }}"
   tasks:
   - name: Obtain SSO token with using username/password credentials
     no_log: false
