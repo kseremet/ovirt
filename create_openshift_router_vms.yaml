@@ -1,5 +1,5 @@
 ---
-- name: Create OpenShift Router VMs
+- name: Create OpenShift Master VMs
   hosts: localhost
   gather_facts: false
   vars:
@@ -10,5 +10,34 @@
     vm_dns_domain: "{{ ocp_router_vm_dns_domain }}"
     is_stateless: False
     template: "{{ linux_vm_template }}"
+    vm_disks: "{{ ocp_router_disks }}"
   tasks:
+  - name: Obtain SSO token with using username/password credentials
+    no_log: false
+    ovirt_auth:
+      url: "{{ lookup('env','OVIRT_URL') }}"
+      username: "{{ lookup('env','OVIRT_USERNAME') }}"
+      password: "{{ lookup('env','OVIRT_PASSWORD') }}"
+      insecure: true
   - import_tasks: create_ovirt_vms.yaml
+
+  - include_tasks: add_disks.yaml vm_name={{ vm_name_prefix}}{{ idx }}
+    with_sequence: count={{ ocp_router_vm_count }}
+    loop_control:
+      loop_var: idx
+
+  - include_tasks: update_runtime_inventory.yaml vm_name={{ vm_name_prefix}}{{ idx }}
+    with_sequence: count={{ ocp_router_vm_count }}
+    loop_control:
+      loop_var: idx
+
+- name: Register VMs to Satellite
+  hosts: openshift_nodes
+  gather_facts: false
+  serial: 1
+  vars:
+    satellite_fqdn: satellite.rhlab.online
+    activationkey: ocp
+    org: RedHat
+  tasks:
+  - include_tasks: openshift_register_to_satellite6.yaml

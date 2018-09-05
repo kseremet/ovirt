@@ -1,12 +1,4 @@
 ---
-- name: Obtain SSO token with using username/password credentials
-  no_log: false
-  ovirt_auth:
-    url: "{{ lookup('env','OVIRT_URL') }}"
-    username: "{{ lookup('env','OVIRT_USERNAME') }}"
-    password: "{{ lookup('env','OVIRT_PASSWORD') }}"
-    insecure: true
-
 - name: Create OpenShift Infra VMs
   hosts: localhost
   gather_facts: false
@@ -18,8 +10,34 @@
     vm_dns_domain: "{{ ocp_infra_vm_dns_domain }}"
     is_stateless: False
     template: "{{ linux_vm_template }}"
-    disks: "{{ ocp_infra_disks }}"
+    vm_disks: "{{ ocp_infra_disks }}"
   tasks:
+  - name: Obtain SSO token with using username/password credentials
+    no_log: false
+    ovirt_auth:
+      url: "{{ lookup('env','OVIRT_URL') }}"
+      username: "{{ lookup('env','OVIRT_USERNAME') }}"
+      password: "{{ lookup('env','OVIRT_PASSWORD') }}"
+      insecure: true
   - import_tasks: create_ovirt_vms.yaml
-  - import_tasks: add_disks.yaml
 
+  - include_tasks: add_disks.yaml vm_name={{ vm_name_prefix}}{{ idx }}
+    with_sequence: count={{ ocp_infra_vm_count }}
+    loop_control:
+      loop_var: idx
+
+  - include_tasks: update_runtime_inventory.yaml vm_name={{ vm_name_prefix}}{{ idx }}
+    with_sequence: count={{ ocp_infra_vm_count }}
+    loop_control:
+      loop_var: idx
+
+- name: Register VMs to Satellite
+  hosts: openshift_nodes
+  gather_facts: false
+  serial: 1
+  vars:
+    satellite_fqdn: satellite.rhlab.online
+    activationkey: ocp
+    org: RedHat
+  tasks:
+  - include_tasks: openshift_register_to_satellite6.yaml
