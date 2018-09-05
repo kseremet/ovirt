@@ -33,7 +33,11 @@
 
 - name: Register VMs to Satellite
   hosts: openshift_nodes
-  gather_facts: no
+  gather_facts: false
+  serial: 1
+  vars:
+    satellite_fqdn: satellite.rhlab.online
+    activationkey: ocp
+    org: RedHat
   tasks:
-  - name: test
-    command: hostname
+  - include_tasks: openshift_register_to_satellite6.yaml

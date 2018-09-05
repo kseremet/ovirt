@@ -1,0 +1,20 @@
+---
+- name: Download latest katello-ca-consumer rpm
+  get_url:
+    url: "https://{{ satellite_fqdn }}/pub/katello-ca-consumer-latest.noarch.rpm"
+    dest: /root/katello-ca-consumer-latest.noarch.rpm
+    mode: 0444
+    validate_certs: false
+
+- name: Install katello-ca-consumer rpm
+  command: rpm --quiet -i /root/katello-ca-consumer-latest.noarch.rpm
+  args:
+    creates: /usr/bin/katello-rhsm-consumer
+
+- name: Register to Satellite6 only for content
+  redhat_subscription:
+    state: present
+    activationkey: "{{ activationkey }}"
+    org_id: "{{ org }}"
+    autosubscribe: true
+    force_register: true
