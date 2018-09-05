@@ -20,7 +20,20 @@
       password: "{{ lookup('env','OVIRT_PASSWORD') }}"
       insecure: true
   - import_tasks: create_ovirt_vms.yaml
+
   - include_tasks: add_disks.yaml vm_name={{ vm_name_prefix}}{{ idx }}
     with_sequence: count={{ ocp_master_vm_count }}
     loop_control:
       loop_var: idx
+
+  - include_tasks: update_runtime_inventory.yaml vm_name={{ vm_name_prefix}}{{ idx }}
+    with_sequence: count={{ ocp_master_vm_count }}
+    loop_control:
+      loop_var: idx
+
+- name: Register VMs to Satellite
+  hosts: openshift_nodes
+  gather_facts: no
+  tasks:
+  - name: test
+    command: hostname
