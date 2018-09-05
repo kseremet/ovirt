@@ -1,0 +1,14 @@
+- ovirt_nics_facts:
+      auth: "{{ ovirt_auth }}"
+      vm: "{{ vm_name }}"
+
+- set_fact: ip_address="{{ ovirt_nics[0]['reported_devices'][0]['ips'][0]['address'] }}"
+
+- name: Add new VM into Ansible's run-time inventory
+  add_host:
+    hostname: "{{ vm_name }}"
+    groups: openshift_nodes
+    ansible_host: "{{ ip_address }}"
+    ansible_user: "{{ ci_user_name }}"
+    ansible_ssh_pass: "{{ password }}"
+
