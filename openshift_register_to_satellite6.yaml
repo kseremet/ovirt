@@ -17,4 +17,4 @@
     activationkey: "{{ activationkey }}"
     org_id: "{{ org }}"
     autosubscribe: true
-    force_register: true
+#   force_register: true
