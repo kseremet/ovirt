@@ -1,7 +1,7 @@
 - ovirt_disk:
     auth: "{{ ovirt_auth }}"
     vm_name: "{{ vm_name }}"
-    name: "{{ item.name }}"
+    name: "{{ vm_name }}-{{ item.name }}"
     size: "{{ item.size }}"
     format: "{{ item.format }}"
     interface: "{{ item.interface }}"
