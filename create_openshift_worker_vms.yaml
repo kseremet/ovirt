@@ -1,5 +1,5 @@
 ---
-- name: Create OpenShift Master VMs
+- name: Create OpenShift Worker VMs
   hosts: localhost
   gather_facts: false
   vars:
@@ -37,7 +37,7 @@
   serial: 1
   vars:
     satellite_fqdn: satellite.rhlab.online
-    activationkey: ocp
+    activationkey: "{{ activationkey_worker }}"
     org: RedHat
   tasks:
   - include_tasks: openshift_register_to_satellite6.yaml

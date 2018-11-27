@@ -37,7 +37,7 @@
   serial: 1
   vars:
     satellite_fqdn: satellite.rhlab.online
-    activationkey: ocp
+    activationkey: "{{ activationkey_infra }}"
     org: RedHat
   tasks:
   - include_tasks: openshift_register_to_satellite6.yaml
