@@ -15,7 +15,7 @@
     become: false
   - include: lab_dnsmasq_tasks.yaml vm_name="{{ hostvars[item]['name'] }}" 
     with_items:
-      - "{{ groups['tag_openshift_master'] }}"
-      - "{{ groups['tag_openshift_infra'] }}"
-      - "{{ groups['tag_openshift_router'] }}"
-      - "{{ groups['tag_openshift_worker'] }}"
+      - "{{ groups[lookup('vars', 'ocp_master_vm_tag')] }}"
+      - "{{ groups[lookup('vars', 'ocp_infra_vm_tag')] }}"
+      - "{{ groups[lookup('vars', 'ocp_router_vm_tag')] }}"
+      - "{{ groups[lookup('vars', 'ocp_worker_vm_tag')] }}"
