@@ -7,7 +7,7 @@
     password: "{{ lookup('env','OVIRT_PASSWORD') }}"
     insecure: true
 - name: Create VM with cloud init
-  ovirt_vm:
+  ovirt_vms:
     auth: "{{ ovirt_auth }}"
     name: "{{ vm_name_prefix}}{{ item }}"
     template: "{{ template }}"
