@@ -7,7 +7,7 @@
     password: "{{ lookup('env','OVIRT_PASSWORD') }}"
     insecure: true
 - name: Create VM with cloud init
-  ovirt_vms:
+  ovirt_vm:
     auth: "{{ ovirt_auth }}"
     name: "{{ vm_name_prefix}}{{ item }}"
     template: "{{ template }}"
@@ -15,6 +15,7 @@
     memory: "{{ memory }}"
     high_availability: false
     stateless: "{{ is_stateless }}"
+    state: running
     wait: true
     cloud_init:
       nic_boot_protocol: "{{ ci_nic_boot_protocol }}"
