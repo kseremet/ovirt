@@ -16,5 +16,5 @@
     state: present
     activationkey: "{{ activationkey }}"
     org_id: "{{ org }}"
-    autosubscribe: true
+#    autosubscribe: true
 #   force_register: true
