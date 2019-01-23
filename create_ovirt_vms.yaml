@@ -13,6 +13,7 @@
     template: "{{ template }}"
     cluster: "{{ cluster }}"
     memory: "{{ memory }}"
+    cpu_cores: "{{ cpus }}"
     high_availability: false
     stateless: "{{ is_stateless }}"
     state: running
